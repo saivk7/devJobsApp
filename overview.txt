@@ -7,3 +7,15 @@ Algorithm:
 App pulls the jobs in and algorithm filters the jobs wanted
 
 --Cron pulls from Indeed,github, google jobs etc.
+
+
+-------------------------
+
+Jobs component:
+
+Job component:
+
+
+
+Upstream data source: Github Jobs [will be scaled up to add other
+ sources like linkedin/indeed/google ]

@@ -1,12 +1,12 @@
 import React from 'react';
 
-function Job(){
+function Job({mockjob}){
     return(
-        <div>
+        <div className="job">
+
+            <p> {mockjob.title} : {mockjob.company}</p>
             
-            <h1>
-                Software Developer Entry Level Roles
-            </h1>
+
 
         </div>
     )
