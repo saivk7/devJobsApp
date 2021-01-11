@@ -1,0 +1,9 @@
+-React for front end with MaterialUI
+-Express Rest API sever
+-Redis as DataStore
+-Node Worker on Cron to pull jobs which uses a filter alogrithm
+
+Algorithm: 
+App pulls the jobs in and algorithm filters the jobs wanted
+
+--Cron pulls from Indeed,github, google jobs etc.
