@@ -1,2 +1,10 @@
 We use cron jobs to update out app at a particular set time interaval.
 
+Redis is the simple database we are using. 
+Note that redis is a in-memory database i.e., it is not persistent and
+doesn't live on a disk like that of a PostgreSQL or MySql
+
+Filter Algorithm:
+
+Fetch the jobs on front end request.
+So caching/database is a good ides

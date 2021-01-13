@@ -2,8 +2,9 @@ var fetch = require('node-fetch');
 
 const bluebird  = require('bluebird');
 
-//
-const redis = require('redis'); //redis is a in memory data store [not persistent as databases]
+//Using redis as a backend database to store the jobs returned by the fetch algorithm
+const redis = require('redis'); 
+//redis is a in memory data store [not persistent as databases]
 const client = redis.createClient();
 //checking  if it connected or not
 client.on('connect', function() {
@@ -64,8 +65,30 @@ async function fetchGithub(){
         totalComp.push(companies);
         console.log("Found companies no. :", companies.length);
     }
+
+    console.log('Found allJobs length is: ' , allJobs.length);
+    //filter algorithm to get only junior level jobs
+    //This algo filters out sr level, manager, architect jobs 
+    //from the API returned and only populates the DB with required jobs
+
+    const jrJobs = allJobs.filter(job=>{
+        const jobTitle  = job.title.toLowerCase();
+        if(
+            jobTitle.includes('senior')||
+            jobTitle.includes('sr.') ||
+            jobTitle.includes('manager') ||
+            jobTitle.includes('designer') ||
+            jobTitle.includes('architect') ||
+            jobTitle.includes('frontend')|| jobTitle.includes('front-end')||
+            jobTitle.includes('devops')
+        ){
+            return false;
+        }
+        return true;
+    });
+
     
-    console.log('Final allJobs : ' , allJobs.length);
+    console.log('Filterd jobs : ' , jrJobs.length);
 
     const success = await setAsync('github',JSON.stringify(allJobs));
     console.log({success});
