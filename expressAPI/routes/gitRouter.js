@@ -11,6 +11,7 @@ const getAsync = promisify(client.get).bind(client);
 /* GET jobs page. */
 gitRouter.get('/', async function(req, res, next) {
     const jobs = await getAsync('github');
+    res.setHeader("Access-Control-Allow-Origin","http://localhost:3000");
     return res.send(jobs);
 
 });

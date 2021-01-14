@@ -20,6 +20,7 @@ function Jobs({mockjobs}){
 }
 
 var mockJobDisplay = (mockjobs) =>{
+    
     return (mockjobs.map(
         job=> <Job mockjob={job} />
     ));
