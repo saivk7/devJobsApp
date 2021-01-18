@@ -1,14 +1,17 @@
 import React from 'react';
 
-function Job({mockjob}){
+import  { Paper,Typography } from '@material-ui/core';
+
+function Job({mockjob,itemNum}){
     return(
-        <div className="job">
+        <Paper className="joblol" elevation={4}  color='primary' >
+            <Typography> Job No. {itemNum} </Typography>
+            <Typography> Title: {mockjob.title}</Typography>          
+            <Typography>Comapny: {mockjob.company}</Typography>
+            <Typography> Location: {mockjob.location}</Typography>
+            <Typography> Posted on : {mockjob.created_at}</Typography>
 
-            <p> {mockjob.title} : {mockjob.company}</p>
-            
-
-
-        </div>
+        </Paper>
     )
 }
 

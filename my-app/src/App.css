@@ -36,3 +36,13 @@
     transform: rotate(360deg);
   }
 }
+
+.joblol{
+  display:block;
+  border:brown;
+  padding:10px 0px;
+  margin:10px 0px;
+
+
+  background-color:blue;
+}

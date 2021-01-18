@@ -80,7 +80,7 @@ async function fetchGithub(){
             jobTitle.includes('designer') ||
             jobTitle.includes('architect') ||
             jobTitle.includes('frontend')|| jobTitle.includes('front-end')||
-            jobTitle.includes('devops')
+            jobTitle.includes('devops') 
         ){
             return false;
         }
@@ -90,7 +90,7 @@ async function fetchGithub(){
     
     console.log('Filterd jobs : ' , jrJobs.length);
 
-    const success = await setAsync('github',JSON.stringify(allJobs));
+    const success = await setAsync('github',JSON.stringify(jrJobs));
     console.log({success});
     const companiesAndLoc = await setAsync('companies',JSON.stringify(totalComp));
     console.log({companiesAndLoc});
