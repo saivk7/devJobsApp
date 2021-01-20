@@ -80,7 +80,8 @@ async function fetchGithub(){
             jobTitle.includes('designer') ||
             jobTitle.includes('architect') ||
             jobTitle.includes('frontend')|| jobTitle.includes('front-end')||
-            jobTitle.includes('devops') 
+            jobTitle.includes('devops')  ||
+            jobTitle.includes('head')
         ){
             return false;
         }

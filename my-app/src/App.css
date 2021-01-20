@@ -43,6 +43,21 @@
   padding:10px 0px;
   margin:10px 0px;
 
+}
+.joblol:hover{
+  cursor: pointer;
+  color: rebeccapurple;
+}
+.job-title{
+  font-style: italic;
+  font-weight: bold;
+  margin: 0px 0px;
 
-  background-color:blue;
+}
+.title{
+  font-weight: bold;
+}
+.serial-number{
+  margin: 0px 0px;
+
 }
