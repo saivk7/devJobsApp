@@ -79,9 +79,9 @@ async function fetchGithub(){
             jobTitle.includes('manager') ||
             jobTitle.includes('designer') ||
             jobTitle.includes('architect') ||
-            jobTitle.includes('frontend')|| jobTitle.includes('front-end')||
+            jobTitle.includes('frontend')|| jobTitle.includes('lead')||
             jobTitle.includes('devops')  ||
-            jobTitle.includes('head')
+            jobTitle.includes('head') || jobTitle.includes('experienced')
         ){
             return false;
         }
@@ -90,8 +90,9 @@ async function fetchGithub(){
 
     
     console.log('Filterd jobs : ' , jrJobs.length);
-
+    const successFull = await setAsync('allJobs',JSON.stringify(allJobs));
     const success = await setAsync('github',JSON.stringify(jrJobs));
+    console.log({successFull});
     console.log({success});
     const companiesAndLoc = await setAsync('companies',JSON.stringify(totalComp));
     console.log({companiesAndLoc});
