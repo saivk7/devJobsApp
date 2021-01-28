@@ -80,20 +80,37 @@ async function fetchGithub(){
             jobTitle.includes('designer') ||
             jobTitle.includes('architect') ||
             jobTitle.includes('frontend')|| jobTitle.includes('lead')||
-            jobTitle.includes('devops')  ||
             jobTitle.includes('head') || jobTitle.includes('experienced')
         ){
             return false;
         }
         return true;
     });
+    const srJobs = allJobs.filter(job=>{
+        const jobTitle  = job.title.toLowerCase();
+        if(
+            jobTitle.includes('senior')||
+            jobTitle.includes('sr.') ||
+            jobTitle.includes('manager') ||
+            jobTitle.includes('designer') ||
+            jobTitle.includes('architect') ||
+            jobTitle.includes('frontend')|| jobTitle.includes('lead')||
+            jobTitle.includes('devops')  ||
+            jobTitle.includes('head') || jobTitle.includes('experienced')
+        ){
+            return true;
+        }
+        return false;
+    });
 
     
     console.log('Filterd jobs : ' , jrJobs.length);
-    const successFull = await setAsync('allJobs',JSON.stringify(allJobs));
-    const success = await setAsync('github',JSON.stringify(jrJobs));
+    const successFull = await setAsync('alljobs',JSON.stringify(allJobs));
+    const success = await setAsync('jrjobs',JSON.stringify(jrJobs));
+    const successsr = await setAsync('srjobs',JSON.stringify(srJobs));
     console.log({successFull});
     console.log({success});
+    console.log({successsr});
     const companiesAndLoc = await setAsync('companies',JSON.stringify(totalComp));
     console.log({companiesAndLoc});
 }

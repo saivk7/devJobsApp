@@ -10,6 +10,7 @@ import KeyboardArrowRight from "@material-ui/icons/KeyboardArrowRight";
 import KeyboardArrowLeft from "@material-ui/icons/KeyboardArrowLeft";
 import ScrollAnimation from 'react-animate-on-scroll';
 import "animate.css/animate.min.css";
+import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
 
 import Fade from 'react-reveal/Fade';
 const steps = [
@@ -27,36 +28,114 @@ const steps = [
     }
 ];
 
-function Jobs({mockjobs}){
+
+
+
+function Jobs(/* {mockjobs} */){
+  
+  //stepper
   const [activeStep, setActiveStep] = React.useState(0);
     
   const [itemNum, setItemNum] = React.useState(0);
     
   const step = 20;
 
-  const maxSteps = Math.ceil(mockjobs.length/step);
-  const len = mockjobs.length;
-  const handleNext = () => {
-  setActiveStep(prevActiveStep => prevActiveStep + 1);
-        setItemNum(itemNum=>itemNum+step);
-        window.scrollTo(0, 0)
-  };  
   
   const handleBack = () => {
         setActiveStep(prevActiveStep => prevActiveStep - 1);
         setItemNum(itemNum=>itemNum-step);
         //window.scrollTo(0, 0)
   };
+
+  //jobs
+  const [jobList,updateJobs] = React.useState([]);
+  //React hook
+  React.useEffect(()=>{
+    fetchJobs(updateJobs);
+    
+  },[]);
+  const [dropdownOpen, setDropdownOpen] = React.useState(false);
+
+  const toggle = () => setDropdownOpen(prevState => !prevState);
+  const [lastClicked, setLastClicked] = React.useState(0);
+  const [name,setName] = React.useState('All');
+
+  const JOB_API_URL1 = `http://localhost:3001/alljobs`;
+  const JOB_API_URL2 = 'http://localhost:3001/jrjobs';
+  const JOB_API_URL3 = 'http://localhost:3001/srjobs';
+  const [url,setUrl] = React.useState(JOB_API_URL1);
+
+  async function fetchJobs(updateCb){
+    const res =await fetch(url);
+    const jslol = await res.json();
+    console.log({jslol});
+    updateCb(jslol);
+  }
+
+  const changeJob = (num) =>{
+    setLastClicked(num);
+    if(num==1){
+      setName("Junior");
+      setUrl(JOB_API_URL2);
+      console.log(url);
+      fetchJobs(updateJobs);
+      
+    }else if(num==2){
+      setName("Senior");
+      setUrl(JOB_API_URL3);
+      console.log(url);
+      fetchJobs(updateJobs);
+
+    }else{
+      setName("All");
+      setUrl(JOB_API_URL1);
+      console.log(url);
+      fetchJobs(updateJobs);
+
+    }
+  }
+
+  
+  const maxSteps = Math.ceil(jobList.length/step);
+  const len = jobList.length;
+  const handleNext = () => {
+  setActiveStep(prevActiveStep => prevActiveStep + 1);
+        setItemNum(itemNum=>itemNum+step);
+        window.scrollTo(0, 0)
+  };  
   
   return(
-      <div id="devJobs" className="container">
-        <h1> Software Developer Entry Level Roles </h1>
-        <h3> Total jobs found {mockjobs.length}</h3>
+      <div id="devJobs" className="container" style={{zIndex:"2"}}>
         
         <div>
           <div  className="container">
+          <div className="row row-content">
+            <div className="col-12">
+              <h1> 
+                <Dropdown isOpen={dropdownOpen} toggle={toggle}>
+                  <DropdownToggle caret>
+                    {name} Jobs
+                  </DropdownToggle>
+                  <DropdownMenu>
+                    <DropdownItem header>Select Level</DropdownItem>
+                    <DropdownItem onClick={()=>changeJob(0)}>All</DropdownItem>
+                    <DropdownItem onClick={()=>changeJob(1)}>Junior</DropdownItem>
+                    <DropdownItem onClick={() =>changeJob(2)}>Senior</DropdownItem>
+                    <DropdownItem disabled>More Filters Coming Soon!</DropdownItem>
+                    <DropdownItem divider />
+                    {/* <DropdownItem>Foo Action</DropdownItem>
+                    <DropdownItem>Bar Action</DropdownItem>
+                    <DropdownItem>Quo Action</DropdownItem> */}
+                  </DropdownMenu>
+                </Dropdown> {name} Software Developer Jobs
+                
+              </h1>
+            </div>
+          </div>
+
+        <h3> Total jobs found {jobList.length}</h3>
           {
-          mockJobDisplay(mockjobs.slice(activeStep,activeStep+step),itemNum)
+          mockJobDisplay(jobList.slice(activeStep,activeStep+step),itemNum)
           }
           </div>
 

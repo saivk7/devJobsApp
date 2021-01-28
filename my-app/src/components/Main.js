@@ -10,7 +10,7 @@ import Footer from './footerComponent';
 //mock state
 import { Switch, Route , Redirect, withRouter, BrowserRouter } from 'react-router-dom';
 
-const mockJobs = [
+/* const mockJobs = [
   {
     "title" : "SWE 1",
     "company": "Google"
@@ -23,9 +23,9 @@ const mockJobs = [
     "title" : "SWE 1",
     "company": "Amazon"
   },
-]
+] */
 //api call url
-const JOB_API_URL = 'http://localhost:3001/jobs';
+/* const JOB_API_URL = 'http://localhost:3001/jobs';
 
 async function fetchJobs(updateCb){
   const res =await fetch(JOB_API_URL);
@@ -33,15 +33,17 @@ async function fetchJobs(updateCb){
   console.log({jslol});
   updateCb(jslol);
 }
-
+needs to be inside main func// moved to jobs component for convinience
+const [jobList,updateJobs] = React.useState([]);
+//React hook
+React.useEffect(()=>{
+  fetchJobs(updateJobs);
+  
+},[]); */
 
 function Main() {
-  const [jobList,updateJobs] = React.useState([]);
-  //React hook
-  React.useEffect(()=>{
-    fetchJobs(updateJobs);
-    
-  },[]);
+  
+
 
   return (
     
@@ -52,7 +54,7 @@ function Main() {
           <Navig />
         <Switch>
           <Route exact path="/home" component={Home} />
-          <Route path="/jobs" component={()=> <Jobs  mockjobs={jobList} />} />
+          <Route path="/jobs" component={()=> <Jobs   />} />
           {/* <Route path="/aboutUs" component={}/> */}
           <Route exact path="/contactus" component={Contact} />
         </Switch>

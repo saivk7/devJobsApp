@@ -85,32 +85,9 @@ a:active {
   padding: 20px 0px 20px 0px;
 }
 
-.customul:hover,
-.customul:focus,
-.customul:active {
-  color:rgb(236, 0, 0);
-  text-decoration: none;
-}
 
-.customul::after {
-  content: "";
-  position: absolute;
-}
-.box-e{
-  padding: 0px 10px;
-}
-
-.box-e .customul::after {
-
-  
-    transition: 0.5s ease all .3s;
-}
-
-.box-e:hover .customul::after {
-  width: 90%;
-    transition: 0.3s ease all;
-}
 .navItem{
   margin: auto;
+  padding:0px 10px;
   background:tranparent;
 }

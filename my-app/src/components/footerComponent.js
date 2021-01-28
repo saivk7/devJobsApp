@@ -1,5 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 
 function Footer(props){
     return(
@@ -40,7 +42,7 @@ function Footer(props){
             </div>
             <div className="row justify-content-center">             
                 <div className="col-auto">
-                    <p>© Copyright 2018 Ristorante Con Fusion</p>
+                    <p>© Copyright 2021 <a href="https://github.com/saivk7" target="_blank">SaiVk7</a></p>
                 </div>
             </div>
         </div>

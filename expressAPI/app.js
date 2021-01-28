@@ -11,6 +11,8 @@ const { promisify }  = require('util');
 const getAsync = promisify(client.get).bind(client);
 
 var gitRouter = require('./routes/gitRouter');
+var jrRouter = require('./routes/jrRouter');
+var srRouter = require('./routes/srRouter');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
@@ -29,7 +31,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
-app.use('/jobs',gitRouter);
+app.use('/alljobs',gitRouter);
+app.use('/jrjobs',jrRouter);
+app.use('/srjobs',srRouter);
 
 /* app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "http://localhost:3001");

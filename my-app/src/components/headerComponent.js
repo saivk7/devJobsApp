@@ -31,6 +31,9 @@ const Navig = (props) => {
               <NavLink className="customul box-e" to="/aboutUs">About Us</NavLink>
             </NavItem>
             <NavItem className="navItem">
+              <NavLink className="customul box-e" to="/contactUs">Contact Us</NavLink>
+            </NavItem>
+            <NavItem className="navItem">
               < a href="https://github.com/saivk7" class="customul box-e" to="./" target="_blank">GitHub</a>
             </NavItem>
             <UncontrolledDropdown nav inNavbar>
